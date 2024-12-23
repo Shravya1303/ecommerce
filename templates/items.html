@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='addcategory.css')}}">
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        <select name="category" id="" required>
+            <option value="electronics">Electronics</option>
+            <option value="groceries">Groceries</option>
+            <option value="fashion">Fashion</option>
+            <option value="home">Home</option>
+        </select>
+        <input name='itemname' placeholder="Item name" type="text" required>
+        <input name="description" placeholder="Item description" type="text" required>
+        <input name="quantity" placeholder="Quantity" type="text" required>
+        <input name="price" placeholder="Price" type="text" required>
+        <input type="file" name="image" required>
+        <input type="submit" class="btn" required>
+        <button><a href="{{url_for('viewcart')}}">View Cart</a></button>
+    </form>
+</body>
+</html>

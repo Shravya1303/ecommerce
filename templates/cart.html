@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- {%extends 'homepage.html'%} -->
+    
+    <h2>your cart</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>category</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key,value in items.items() %}
+            <tr>
+                <td><img src="{(url_for('static',filename=value[3]))}" alt="{{value[0]}}" height="100px"></td>
+                <td>{{value[0]}}</td>
+                <td>{{value[4]}}</td>
+                <td>RS {{value[1]}}</td>
+                <td>{{value[2]}}</td>
+                <td>RS {{value[1] * value[2]}}</td>
+                <td><button></button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

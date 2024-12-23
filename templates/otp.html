@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{{url_for('otp',otp=otp,username=username,mobile=mobile,email=email,address=address,password=password)}}">
+        <h5>Enter the code</h5>
+        <input type="text" name="otp" id="">
+        <button>Sign up</button>
+    </form>
+</body>
+</html>

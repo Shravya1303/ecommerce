@@ -1,0 +1,21 @@
+{% extends 'homepage.html' %}
+{% block content %}
+<div class="container" >
+    <div class="row">
+       <center><label ><h1><b><u>Name:{{items[1]}}</u></b></h1></label><br></center> 
+        <div class="col-md-6">
+        <img src="{{url_for('static',filename=items[0]+'.jpg')}}" height="550" width="550" /><br>
+        </div>
+            <div class="col-md-4">
+                <h3><b>Description:</b></h3><p>{{items[2]}}</p>
+                <h3><b>Category:</b>{{items[4]}}</h3>
+                <h3><b>Price:</b>{{items[5]}}</h3><br>     
+                
+            </div>
+            <div class="col-md-2">
+                <button class="button-522" formaction="{{url_for('cart',itemid=items[0],name=items[1],price=items[5])}}">Add to cart</a></button><br><br>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
