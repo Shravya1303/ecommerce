@@ -7,13 +7,23 @@ import razorpay
 from http import client
 from itemid import itemidotp
 
-mydb=mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='root',
-    database='ecommerce'
-)
-
+# mydb=mysql.connector.connect(
+#     host='localhost',
+#     user='root',
+#     password='root',
+#     database='ecommerce'
+# )
+db=os.environ['RDS_DB_NAME']
+user=os.environ['RDS_USERNAME']
+password=os.environ['RDS_PASSWORD']
+host=os.environ['RDS_HOSTNAME']
+port=os.environ['RDS_PORT']
+with mysql.connector.connect(host='host',user='user',password='password',db='db'):
+cursor=mydb.cursor(buffered=True)
+cursor.execute("CREATE TABLE signup (username varchar(30) DEFAULT NULL,mobile varchar(12) DEFAULT NULL,email varchar(50) NOT NULL,address varchar(75) DEFAULT NULL,password text,PRIMARY KEY (email),UNIQUE KEY unique_email (email),KEY email (email),KEY email_2 (email),KEY idx_username (username))")
+cursor.execute("CREATE TABLE adminsignup (name varchar(30) DEFAULT NULL,mobile bigint NOT NULL,email varchar(50) DEFAULT NULL,password varchar(40) DEFAULT NULL,PRIMARY KEY (mobile),UNIQUE KEY email (email))")
+cursor.execute("CREATE TABLE additems (itemid varchar(30) NOT NULL,name varchar(30) DEFAULT NULL,discription longtext,qty varchar(20) DEFAULT NULL,category enum('electronics','grocery','fashion','home') DEFAULT NULL,price varchar(30) DEFAULT NULL,PRIMARY KEY (itemid))")
+cursor.execute("CREATE TABLE orders (order_id bigint NOT NULL AUTO_INCREMENT,itemid varchar(30) NOT NULL,item_name longtext NOT NULL,qty int DEFAULT NULL,total_price bigint DEFAULT NULL,user varchar(100) DEFAULT NULL,PRIMARY KEY (order_id),KEY user (user),KEY itemid (itemid),CONSTRAINT orders_ibfk_1 FOREIGN KEY (user) REFERENCES signup (username),CONSTRAINT orders_ibfk_2 FOREIGN KEY (itemid) REFERENCES additems (itemid))")
 app=Flask(__name__)
 app.secret_key='hvbaiuskhfirf'
 
